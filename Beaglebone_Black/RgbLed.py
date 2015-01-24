@@ -18,10 +18,10 @@ class RgbLed:
 		ledR = Led('red', pinR, 0)
 		ledG = Led('green', pinG, 0)
 		ledB = Led('blue', pinB, 0)
-		self.leds = {}
-		self.leds[ledR.name] = ledR
-		self.leds[ledG.name] = ledG
-		self.leds[ledB.name] = ledB
+		self.colors = {}
+		self.colors[ledR.name] = ledR
+		self.colors[ledG.name] = ledG
+		self.colors[ledB.name] = ledB
 		self.turnOn()
 		print "------ RGB LED initialized -----"
 
@@ -30,19 +30,19 @@ class RgbLed:
 		print "----- PWM is all cleaned up! See ya. -----"
 
 	def turnOn(self):
-		for l in self.leds.values():
+		for l in self.colors.values():
 			l.turnOn()
 
 	def turnOff(self):
-		for l in self.leds.values():
+		for l in self.colors.values():
 			l.turnOff()
 
 	def makeWhite(self, brightness):
-		for l in self.leds.values():
+		for l in self.colors.values():
 			l.setBrightness(brightness);
 
 	def resumeColor(self):
-		for l in self.leds.values():
+		for l in self.colors.values():
 			l.setBrightness(l.brightness)
 		
 
