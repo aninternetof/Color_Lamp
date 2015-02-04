@@ -23,11 +23,11 @@ class RgbLed:
 		self.colors[ledG.name] = ledG
 		self.colors[ledB.name] = ledB
 		self.turnOn()
-		print "------ RGB LED initialized -----"
+		print "RGB LED initialized"
 
 	def __del__(self):
 		PWM.cleanup()
-		print "----- PWM is all cleaned up! See ya. -----"
+		print"PWM is all cleaned up"
 
 	def turnOn(self):
 		for l in self.colors.values():
@@ -45,8 +45,4 @@ class RgbLed:
 		for l in self.colors.values():
 			l.setBrightness(l.brightness)
 		
-
-#l = RgbLed('P9_14','P9_16','P9_22')
-#l.makeWhite(100)
-#raw_input()
 
