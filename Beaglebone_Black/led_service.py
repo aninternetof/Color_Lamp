@@ -11,16 +11,20 @@ class ColorServer(HTTPServer):
 class ColorRequestHandler(BaseHTTPRequestHandler):
 
 	def do_POST(self):
-		print 'Handling post'
 		responseType = self.headers.get('Accept', 'text/html')
-		rxDict = json.loads(self.rfile.read().decode())
-		print 'Finished parsing data'
+		datalength = int(self.headers.get('content-length', 0))
+		readData = self.rfile.read(datalength)
+		if not readData:
+			self.send_response(400)
+			self.wfile.write('No data recieved or content-length not set')
+			return
+		rxDict = json.loads(readData.decode())
 		for color, brightness in rxDict.items():
-			if color not in self.server.colors:
+			if color not in self.server.rgbLed.colors:
 				self.send_response(400) #bad request
 				self.wfile.write('Invalid color {0}.'.format(color))
 				return
-			self.server.colors[color].setBrightness(brightness)
+			self.server.rgbLed.colors[color].setBrightness(brightness)
 			self.send_response(200) #success
 		if responseType == 'text/html':
 			self.wfile.write('')
