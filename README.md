@@ -5,7 +5,7 @@ A web-connected lamp whose base changes colors to display a live data feed. I am
 I am using a BeagleBone Black to control the lamp. But, the code is Python2, so if you can run Python and have decent PWM capabilities, then this code is for you!
 
 ## Interface
-You can communicate to the BeagleBone Black over a simple JSON HTTP posts.
+You can communicate to the BeagleBone Black with simple JSON HTTP posts.
 
 ## Tasks in progress
 ### Twitter data feed
